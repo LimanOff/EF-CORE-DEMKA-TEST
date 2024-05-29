@@ -1,0 +1,35 @@
+﻿<Window x:Class="EFCore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EFCore"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="383*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Добавить продукт" Grid.Column="0" Click="CreateNewProduct_Click"/>
+        <Button Content="Упорядочить по цене продукт" Grid.Column="1" Click="OrderProductsByPrice_Click"/>
+        
+        <ListBox x:Name="ProductsListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Path=Price}"/>
+                        <Label Content="{Binding Path=Vendor.Name}"/>
+                        <Image Source="{Binding Path=ImageName}" Width="300"/>
+                        <Button Tag="{Binding Path=Id}" Click="DeleteProduct_Click" Content="Удалить"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
